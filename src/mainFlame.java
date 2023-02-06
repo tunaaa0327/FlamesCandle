@@ -1,6 +1,9 @@
 import java.util.Scanner;
 
 public class mainFlame {
+    //Members
+    //Pecaoco, Jules Alfonz R.
+    //
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String nOne, nTwo;
@@ -32,28 +35,20 @@ public class mainFlame {
     }
 
 
-    //count the number of same letters from x to y and vice versa
+    //count the number of same letters of x to y and vice versa
     public static int countCompare(String nOne, String nTwo){
         nOne = reSpace(nOne);
         nTwo = reSpace(nTwo);
         int count =0;
         for (int i = 0; i < nTwo.length(); i++) {
-            if(compare(nOne, nTwo.charAt(i))){
-                count++;
+            for(int k =0;k<nOne.length();k++){
+                if(nOne.charAt(k)==nTwo.charAt(i)){
+                    count++;
+                    break;
+                }
             }
         }
         return count;
-    }
-
-
-    //returns true if x == y
-    public static boolean compare(String nOne, char nTwo){
-        for(int i = 0; i< nOne.length(); i++){
-            if(nTwo == nOne.charAt(i)){
-                return true;
-            }
-        }
-        return false;
     }
 
 
