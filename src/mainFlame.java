@@ -5,6 +5,7 @@ public class mainFlame {
         Scanner sc = new Scanner(System.in);
         String nOne, nTwo;
 
+        System.out.println("__________FLAMES CANDLE__________\n");
         System.out.print("Input Name #1: ");
         nOne = sc.nextLine();
         System.out.print("Input Name #2: ");
@@ -30,6 +31,7 @@ public class mainFlame {
         return x.replaceAll("\\s","").toLowerCase();
     }
 
+
     //count the number of same letters from x to y and vice versa
     public static int countCompare(String nOne, String nTwo){
         nOne = reSpace(nOne);
@@ -43,6 +45,7 @@ public class mainFlame {
         return count;
     }
 
+
     //returns true if x == y
     public static boolean compare(String nOne, char nTwo){
         for(int i = 0; i< nOne.length(); i++){
@@ -52,6 +55,7 @@ public class mainFlame {
         }
         return false;
     }
+
 
     //returns the sum of both names (x+y)
     public static int sumBoth(String nOne, String nTwo){
