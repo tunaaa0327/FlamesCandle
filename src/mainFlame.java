@@ -10,6 +10,7 @@ public class mainFlame {
         nOne = sc.nextLine();
         System.out.print("Input Name #2: ");
         nTwo = sc.nextLine();
+        System.out.println("____________________");
         printOut(nOne,nTwo);
 
     }
@@ -23,7 +24,6 @@ public class mainFlame {
         System.out.println(nTwo+" = "+countCompare(nOne,nTwo)+" - "+conditionFlamesCandle(countCompare(nOne,nTwo)));
         System.out.println("Total = "+sumBoth(nOne,nTwo)+" - "+conditionFlamesCandle(sumBoth(nOne,nTwo)));
     }
-
 
 
     //remove space between names
@@ -61,8 +61,6 @@ public class mainFlame {
     public static int sumBoth(String nOne, String nTwo){
         return countCompare(nOne,nTwo)+countCompare(nTwo,nOne);
     }
-
-
 
 
     //returns interpreted score
