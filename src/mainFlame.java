@@ -9,7 +9,6 @@ public class mainFlame {
         nOne = sc.nextLine();
         System.out.print("Input Name #2: ");
         nTwo = sc.nextLine();
-
         printOut(nOne,nTwo);
 
     }
@@ -17,6 +16,7 @@ public class mainFlame {
 
 
 
+    //prints Out input names, scores and interpreted score
     public static void printOut(String nOne, String nTwo){
         System.out.println(nOne+" = "+countCompare(nTwo,nOne)+" - "+conditionFlamesCandle(countCompare(nTwo,nOne)));
         System.out.println(nTwo+" = "+countCompare(nOne,nTwo)+" - "+conditionFlamesCandle(countCompare(nOne,nTwo)));
@@ -25,10 +25,12 @@ public class mainFlame {
 
 
 
+    //remove space between names
     public static String reSpace(String x){
         return x.replaceAll("\\s","").toLowerCase();
     }
 
+    //count the number of same letters from x to y and vice versa
     public static int countCompare(String nOne, String nTwo){
         nOne = reSpace(nOne);
         nTwo = reSpace(nTwo);
@@ -41,6 +43,7 @@ public class mainFlame {
         return count;
     }
 
+    //returns true if x == y
     public static boolean compare(String nOne, char nTwo){
         for(int i = 0; i< nOne.length(); i++){
             if(nTwo == nOne.charAt(i)){
@@ -50,11 +53,15 @@ public class mainFlame {
         return false;
     }
 
+    //returns the sum of both names (x+y)
     public static int sumBoth(String nOne, String nTwo){
         return countCompare(nOne,nTwo)+countCompare(nTwo,nOne);
     }
 
 
+
+
+    //returns interpreted score
     public static String conditionFlamesCandle(int sumBoth){
         String a ="";
         while(sumBoth>12){
