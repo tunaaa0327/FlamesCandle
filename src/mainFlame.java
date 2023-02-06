@@ -23,9 +23,9 @@ public class mainFlame {
 
     //prints Out input names, scores and interpreted score
     public static void printOut(String nOne, String nTwo){
-        System.out.println(nOne+" = "+countCompare(nTwo,nOne)+" - "+conditionFlamesCandle(countCompare(nTwo,nOne)));
-        System.out.println(nTwo+" = "+countCompare(nOne,nTwo)+" - "+conditionFlamesCandle(countCompare(nOne,nTwo)));
-        System.out.println("Total = "+sumBoth(nOne,nTwo)+" - "+conditionFlamesCandle(sumBoth(nOne,nTwo)));
+        System.out.println(nOne+" = "+ countSimilar(nTwo,nOne)+" - "+ conditionFlames(countSimilar(nTwo,nOne)));
+        System.out.println(nTwo+" = "+ countSimilar(nOne,nTwo)+" - "+ conditionFlames(countSimilar(nOne,nTwo)));
+        System.out.println("Total = "+sumBoth(nOne,nTwo)+" - "+ conditionFlames(sumBoth(nOne,nTwo)));
     }
 
 
@@ -36,7 +36,7 @@ public class mainFlame {
 
 
     //count the number of same letters of x to y and vice versa
-    public static int countCompare(String nOne, String nTwo){
+    public static int countSimilar(String nOne, String nTwo){
         nOne = reSpace(nOne);
         nTwo = reSpace(nTwo);
         int count =0;
@@ -54,18 +54,18 @@ public class mainFlame {
 
     //returns the sum of both names (x+y)
     public static int sumBoth(String nOne, String nTwo){
-        return countCompare(nOne,nTwo)+countCompare(nTwo,nOne);
+        return countSimilar(nOne,nTwo)+ countSimilar(nTwo,nOne);
     }
 
 
     //returns interpreted score
-    public static String conditionFlamesCandle(int sumBoth){
+    public static String conditionFlames(int sumBoth){
         String a ="";
         while(sumBoth>12){
             sumBoth-=12;
         }
         switch (sumBoth){
-            case 0 -> a = "NOT COMPATIBLE";
+            case 0 -> a = "NOT COMPATIBLE 0% CHANCE";
             case 1 -> a = "FRIENDS";
             case 2 -> a = "LOVERS";
             case 3 -> a = "ACCEPT";
