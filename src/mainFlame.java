@@ -53,37 +53,29 @@ public class mainFlame {
     }
 
 
-    //returns allocated memory for similar letters
-    public static int lessThan(String nOne, String nTwo){
-        int a = countSimilar(nOne ,nTwo),b = countSimilar(nTwo,nOne);
-        if(a>b) return b;
-        else return a;
-    }
-
-
     //add similar letters of nOne and nTwo and filter similar letter inside array
     public static String similarLetters(String nOne, String nTwo) {
-        char[] sameLet = new char[lessThan(nOne, nTwo)];
+        ArrayList<Character> sameLet= new ArrayList<>();
         int d=0;
         for (int i = 0; i < nTwo.length(); i++) {
             boolean f = false;
             for (int k = 0; k < nOne.length(); k++) {
                 if (nOne.charAt(k) == nTwo.charAt(i)) {
-                    for (char c : sameLet) {
-                        if (c == nTwo.charAt(i)) {
+                    for (Character b : sameLet) {
+                        if (b == nTwo.charAt(i)) {
                             f = true;
                             break;
                         }
                     }
                     if(!f){
-                        sameLet[d] = nTwo.charAt(i);
+                        sameLet.add(nTwo.charAt(i));
                         d++;
                         break;
                     }
                 }
             }
         }
-        return Arrays.toString(sameLet);
+        return sameLet.toString();
     }
 
 
