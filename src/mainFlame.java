@@ -8,6 +8,7 @@ public class mainFlame {
         Scanner sc = new Scanner(System.in);
         String nOne, nTwo;
 
+
         System.out.println("__________FLAMES CANDLE__________\n");
         System.out.print("Input Name #1: ");
         nOne = sc.nextLine();
@@ -25,10 +26,11 @@ public class mainFlame {
     public static void printOut(String nOne, String nTwo){
         nOne = reSpace(nOne);
         nTwo = reSpace(nTwo);
-        System.out.println("Similar Letters: "+similarLetters(nOne,nTwo));
-        System.out.println(nOne+" = "+ countSimilar(nTwo,nOne)+" - "+ conditionFlames(countSimilar(nTwo,nOne)));
-        System.out.println(nTwo+" = "+ countSimilar(nOne,nTwo)+" - "+ conditionFlames(countSimilar(nOne,nTwo)));
-        System.out.println("Total = "+sumBoth(nOne,nTwo)+" - "+ conditionFlames(sumBoth(nOne,nTwo)));
+        int total = countSimilar(nOne,nTwo)+countSimilar(nTwo,nOne);
+
+        System.out.println(nOne+" = "+ countSimilar(nTwo,nOne)+" : "+notSimilarLetters(nTwo,nOne));
+        System.out.println(nTwo+" = "+ countSimilar(nOne,nTwo)+" : "+notSimilarLetters(nOne,nTwo));
+        System.out.println("Total = "+total+" - "+ conditionFlames(total));
     }
 
 
@@ -42,46 +44,34 @@ public class mainFlame {
     public static int countSimilar(String nOne, String nTwo){
         int count =0;
         for (int i = 0; i < nTwo.length(); i++) {
+            boolean a = true;
             for(int k =0;k<nOne.length();k++){
                 if(nOne.charAt(k)==nTwo.charAt(i)){
-                    count++;
+                    a = false;
                     break;
                 }
             }
+            if(a) count++;
         }
         return count;
     }
 
 
     //add similar letters of nOne and nTwo and filter similar letter inside array
-    public static String similarLetters(String nOne, String nTwo) {
-        ArrayList<Character> sameLet= new ArrayList<>();
+    public static String notSimilarLetters(String nOne, String nTwo) {
+        char [] notSame = new char[countSimilar(nOne,nTwo)];
         int d=0;
         for (int i = 0; i < nTwo.length(); i++) {
-            boolean f = false;
-            for (int k = 0; k < nOne.length(); k++) {
-                if (nOne.charAt(k) == nTwo.charAt(i)) {
-                    for (Character b : sameLet) {
-                        if (b == nTwo.charAt(i)) {
-                            f = true;
-                            break;
-                        }
-                    }
-                    if(!f){
-                        sameLet.add(nTwo.charAt(i));
-                        d++;
-                        break;
-                    }
+            boolean a = true;
+            for(int k =0;k<nOne.length();k++){
+                if(nOne.charAt(k)==nTwo.charAt(i)){
+                    a = false;
+                    break;
                 }
             }
+            if(a) notSame[d++]=nTwo.charAt(i);
         }
-        return sameLet.toString();
-    }
-
-
-        //returns the sum of both names (x+y)
-    public static int sumBoth(String nOne, String nTwo){
-        return countSimilar(nOne,nTwo)+ countSimilar(nTwo,nOne);
+        return Arrays.toString(notSame);
     }
 
 
@@ -108,7 +98,5 @@ public class mainFlame {
         }
         return a;
     }
-
-
 
 }
