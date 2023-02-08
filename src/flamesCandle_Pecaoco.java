@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class mainFlame {
+public class flamesCandle_Pecaoco {
     //Members
     //Pecaoco, Jules Alfonz R.
     //
@@ -26,11 +26,13 @@ public class mainFlame {
     public static void printOut(String nOne, String nTwo){
         nOne = reSpace(nOne);
         nTwo = reSpace(nTwo);
-        int total = countSimilar(nOne,nTwo)+countSimilar(nTwo,nOne);
+        int a = countDiffLetters(nTwo,nOne);
+        int b = countDiffLetters(nOne,nTwo);
 
-        System.out.println(nOne+" = "+ countSimilar(nTwo,nOne)+" : "+notSimilarLetters(nTwo,nOne));
-        System.out.println(nTwo+" = "+ countSimilar(nOne,nTwo)+" : "+notSimilarLetters(nOne,nTwo));
-        System.out.println("Total = "+total+" - "+ conditionFlames(total));
+        System.out.println("Similar Letters: "+arraySimLetters(nOne,nTwo));
+        System.out.println(nOne+" = "+ a+" : "+ arrayDiffLetters(nTwo,nOne));
+        System.out.println(nTwo+" = "+ b+" : "+ arrayDiffLetters(nOne,nTwo));
+        System.out.println("Total = "+(a+b)+" - "+ conditionFlames(a+b));
     }
 
 
@@ -40,8 +42,8 @@ public class mainFlame {
     }
 
 
-    //count the number of same letters of x to y and vice versa
-    public static int countSimilar(String nOne, String nTwo){
+    //returns number of different letters of nOne and nTwo vice versa
+    public static int countDiffLetters(String nOne, String nTwo){
         int count =0;
         for (int i = 0; i < nTwo.length(); i++) {
             boolean a = true;
@@ -57,9 +59,9 @@ public class mainFlame {
     }
 
 
-    //add similar letters of nOne and nTwo and filter similar letter inside array
-    public static String notSimilarLetters(String nOne, String nTwo) {
-        char [] notSame = new char[countSimilar(nOne,nTwo)];
+    //returns array of different character of nOne and nTwo vice versa
+    public static String arrayDiffLetters(String nOne, String nTwo) {
+        char [] notSame = new char[countDiffLetters(nOne,nTwo)];
         int d=0;
         for (int i = 0; i < nTwo.length(); i++) {
             boolean a = true;
@@ -74,27 +76,37 @@ public class mainFlame {
         return Arrays.toString(notSame);
     }
 
+    //returns array of similar letters
+    public static String arraySimLetters(String nOne, String nTwo) {
+        ArrayList<Character> notSame = new ArrayList<>();
+        for (int i = 0; i < nTwo.length(); i++) {
+            for(int k =0;k<nOne.length();k++){
+                if(nOne.charAt(k)==nTwo.charAt(i)){
+                    if(!notSame.contains(nTwo.charAt(i))){
+                        notSame.add(nTwo.charAt(i));
+                    }
+                }
+            }
+        }
+        return String.valueOf(notSame);
+    }
+
+
 
     //returns interpreted score
     public static String conditionFlames(int sumBoth){
-        String a ="";
-        while(sumBoth>12){
-            sumBoth-=12;
+        while(sumBoth>6){
+            sumBoth -= 6;
         }
+        String a ="";
         switch (sumBoth){
             case 0 -> a = "NOT COMPATIBLE 0% CHANCE";
             case 1 -> a = "FRIENDS";
             case 2 -> a = "LOVERS";
-            case 3 -> a = "ACCEPT";
+            case 3 -> a = "ADMIRER";
             case 4 -> a = "MARRIAGE";
             case 5 -> a = "ENEMY";
             case 6 -> a = "SOULMATE";
-            case 7 -> a = "CRUSH";
-            case 8 -> a = "AFFECTION/ADMIRER";
-            case 9 -> a = "NEVER";
-            case 10 -> a = "DARLING";
-            case 11 -> a = "LOVE OF MY LIFE";
-            case 12 -> a = "ENEMIES";
         }
         return a;
     }
