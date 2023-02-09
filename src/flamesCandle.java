@@ -1,9 +1,6 @@
 import java.util.*;
 
-public class flamesCandle_Pecaoco {
-    //Members
-    //Pecaoco, Jules Alfonz R.
-    //
+public class flamesCandle{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String nOne, nTwo;
